@@ -1,3 +1,11 @@
+from rest_framework import viewsets
+from home.models import RecipientInformation, RecipientInformation, RecipientInformation
+from .serializers import (
+    RecipientInformationSerializer,
+    RecipientInformationSerializer,
+    RecipientInformationSerializer,
+)
+from rest_framework import authentication
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.viewsets import ModelViewSet, ViewSet
 from rest_framework.authtoken.models import Token
@@ -28,3 +36,12 @@ class LoginViewSet(ViewSet):
         token, created = Token.objects.get_or_create(user=user)
         user_serializer = UserSerializer(user)
         return Response({"token": token.key, "user": user_serializer.data})
+
+
+class RecipientInformationViewSet(viewsets.ModelViewSet):
+    serializer_class = RecipientInformationSerializer
+    authentication_classes = (
+        authentication.SessionAuthentication,
+        authentication.TokenAuthentication,
+    )
+    queryset = RecipientInformation.objects.all()
