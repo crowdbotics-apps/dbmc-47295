@@ -32,6 +32,7 @@ urlpatterns = [
     path("rest-auth/registration/account-confirm-email/<str:key>/", confirm_email),
     path("rest-auth/registration/", include("dj_rest_auth.registration.urls")),
     path("api/v1/", include("connectors.api.v1.urls")),
+    path("home/", include("home.urls")),
 ]
 
 admin.site.site_header = "dbmc"
